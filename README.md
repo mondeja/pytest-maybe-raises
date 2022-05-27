@@ -30,8 +30,8 @@ def test_something(value, expected_result):
 But this is really long and ugly.
 
 Does pytest provides a fixture that allows me to only uses the [`pytest.raises`]
-context when the provided argument is an exception class? The anser is not (see
-the [question in Stackoverflow](https://stackoverflow.com/q/42623495/9167585)),
+context when the provided argument is an exception class? The answer is not (see
+[this question in Stackoverflow](https://stackoverflow.com/q/42623495/9167585)),
 so I've written this convenient fixture:
 
 ```python
@@ -51,11 +51,11 @@ def maybe_raises():
     return _maybe_raises
 ```
 
-So this package provides a wrapper fixture over `pytest.raises` which
+This package provides a wrapper fixture over `pytest.raises` which
 context only has effect if the passed argument is an exception class,
 otherwise uses a null context like [`contextlib.nullcontext`].
 
-So using this package I can rewrite my tests as:
+Using this package I can rewrite my tests as:
 
 ```python
 import pytest
@@ -74,14 +74,13 @@ def test_something(value, expected_result, maybe_raises):
         assert bool(result)
 ```
 
-But in order to use it properly you need to know how this magic works:
+But in order to use it properly you need to know how the magic works:
 
 Note that when an exception raises inside [`pytest.raises`] context, the
-contexts exits so the later `assert ... == expected_result` comparison
-is not executed when the exception is catch. If other exception raises,
-it is propagated to your test so the comparison is not executed either.
-This allows you to write more assertions after the execution of the function
-for successfull calls.
+context exits so the later `assert ... == expected_result` comparison
+is not executed. If other exception raises would be propagated to your test
+so the comparison is not executed either. This allows you to write more
+assertions after the execution of the function for successfull calls.
 
 [`pytest.raises`]: https://docs.pytest.org/en/latest/reference/reference.html?highlight=pytest%20raises#pytest-raises
 [`contextlib.nullcontext`]: https://docs.python.org/3/library/contextlib.html#contextlib.nullcontext

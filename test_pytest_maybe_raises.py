@@ -64,3 +64,10 @@ def test_with_fixture(value, expected_result, expected_match, maybe_raises):
         assert exc_info_or_result.type is expected_result
     else:
         assert exc_info_or_result == expected_result
+
+
+def test_same_exception_doesnt_match(maybe_raises):
+    expected_message = "Regex pattern 'foo' does not match 'bar'"
+    with pytest.raises(AssertionError, match=expected_message):
+        with maybe_raises(ValueError, match="foo"):
+            raise ValueError("bar")
