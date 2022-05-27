@@ -1,5 +1,7 @@
 # pytest-maybe-raises
 
+[![PyPI](https://img.shields.io/pypi/v/pytest-maybe-raises)](https://pypi.org/project/pytest-maybe-raises/) [![Python versions](https://img.shields.io/pypi/pyversions/pytest-maybe-raises?labelColor=333333)](https://pypi.org/project/pytest-maybe-raises/) [![License](https://img.shields.io/pypi/l/pytest-maybe-raises?color=light-green)](https://github.com/mondeja/pytest-maybe-raises/blob/master/LICENSE) [![Tests](https://img.shields.io/github/workflow/status/mondeja/pytest-maybe-raises/CI?logo=github&label=tests)](https://github.com/mondeja/pytest-maybe-raises/actions?query=workflow%3ACI)
+
 Pytest fixture for optional exception testing.
 
 ## Documentation
