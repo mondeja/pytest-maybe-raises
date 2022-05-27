@@ -3,6 +3,9 @@ import contextlib
 import pytest
 
 
+__version__ = "0.1.1"
+
+
 @contextlib.contextmanager
 def _maybe_raises(maybe_exception_class, *args, **kwargs):
     if hasattr(maybe_exception_class, "__traceback__"):

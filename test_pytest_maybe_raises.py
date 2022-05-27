@@ -4,6 +4,11 @@ import functools
 import pytest
 
 
+@contextlib.contextmanager
+def exc_info_context(result, *args, **kwargs):
+    yield result
+
+
 def func_that_raises(value):
     if isinstance(value, str):
         if value:
@@ -44,7 +49,7 @@ def test_without_branching(value, expected_result, expected_match):
     ctx = (
         functools.partial(pytest.raises, match=expected_match)
         if hasattr(expected_result, "__traceback__")
-        else contextlib.nullcontext
+        else exc_info_context
     )
     with ctx(expected_result) as exc_info_or_result:
         assert_func_that_raises(value, expected_result)
